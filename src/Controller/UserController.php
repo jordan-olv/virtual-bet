@@ -17,11 +17,9 @@ use Symfony\Component\Serializer\SerializerInterface;
 class UserController extends AbstractController
 {
     #[Route('/', name: 'app_user_index', methods: ['GET'])]
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository): JsonResponse
     {
-        return $this->render('user/index.html.twig', [
-            'users' => 'dd',
-        ]);
+        return new JsonResponse('dd', Response::HTTP_OK);
     }
 
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
@@ -47,9 +45,9 @@ class UserController extends AbstractController
     #[Route('/{id}', name: 'app_user_show', methods: ['GET'])]
     public function show(User $user, SerializerInterface $serializer): JsonResponse
     {
-        //dd($user);
 
-        $jsonUser = $serializer->serialize($user, 'json', []);
+
+        $jsonUser = $serializer->serialize($user, 'json', ['groups' => ['user_simple', 'user_stats']]);
         return new JsonResponse($jsonUser, Response::HTTP_OK);
     }
 

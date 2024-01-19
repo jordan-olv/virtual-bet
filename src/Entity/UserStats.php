@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\UserStatsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserStatsRepository::class)]
 class UserStats
@@ -18,12 +19,15 @@ class UserStats
     private ?User $user = null;
 
     #[ORM\Column]
+    #[Groups(["user_stats"])]
     private ?int $nbParis = null;
 
     #[ORM\Column]
+    #[Groups(["user_stats"])]
     private ?int $nbWinBet = null;
 
     #[ORM\Column]
+    #[Groups(["user_stats"])]
     private ?int $nbLoseBet = null;
 
     public function __construct()
