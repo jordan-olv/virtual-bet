@@ -21,9 +21,17 @@ class Evenement
     #[ORM\OneToMany(mappedBy: 'Evenement', targetEntity: EquipeEvenement::class)]
     private Collection $equipeEvenements;
 
+    #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: UserEvenement::class)]
+    private Collection $userEvenements;
+
+    #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Rencontre::class)]
+    private Collection $rencontres;
+
     public function __construct()
     {
         $this->equipeEvenements = new ArrayCollection();
+        $this->userEvenements = new ArrayCollection();
+        $this->rencontres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -67,6 +75,66 @@ class Evenement
             // set the owning side to null (unless already changed)
             if ($equipeEvenement->getEvenement() === $this) {
                 $equipeEvenement->setEvenement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserEvenement>
+     */
+    public function getUserEvenements(): Collection
+    {
+        return $this->userEvenements;
+    }
+
+    public function addUserEvenement(UserEvenement $userEvenement): static
+    {
+        if (!$this->userEvenements->contains($userEvenement)) {
+            $this->userEvenements->add($userEvenement);
+            $userEvenement->setEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserEvenement(UserEvenement $userEvenement): static
+    {
+        if ($this->userEvenements->removeElement($userEvenement)) {
+            // set the owning side to null (unless already changed)
+            if ($userEvenement->getEvenement() === $this) {
+                $userEvenement->setEvenement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Rencontre>
+     */
+    public function getRencontres(): Collection
+    {
+        return $this->rencontres;
+    }
+
+    public function addRencontre(Rencontre $rencontre): static
+    {
+        if (!$this->rencontres->contains($rencontre)) {
+            $this->rencontres->add($rencontre);
+            $rencontre->setEvenement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRencontre(Rencontre $rencontre): static
+    {
+        if ($this->rencontres->removeElement($rencontre)) {
+            // set the owning side to null (unless already changed)
+            if ($rencontre->getEvenement() === $this) {
+                $rencontre->setEvenement(null);
             }
         }
 

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -39,10 +41,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(["user_stats"])]
     private ?UserStats $userStats = null;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: UserEvenement::class)]
+    private Collection $userEvenements;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Pari::class)]
+    private Collection $paris;
+
     public function __construct()
     {
         $this->userStats = new UserStats();
         $this->userStats->setUser($this);
+        $this->userEvenements = new ArrayCollection();
+        $this->paris = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -124,6 +134,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         $this->userStats = $userStats;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserEvenement>
+     */
+    public function getUserEvenements(): Collection
+    {
+        return $this->userEvenements;
+    }
+
+    public function addUserEvenement(UserEvenement $userEvenement): static
+    {
+        if (!$this->userEvenements->contains($userEvenement)) {
+            $this->userEvenements->add($userEvenement);
+            $userEvenement->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserEvenement(UserEvenement $userEvenement): static
+    {
+        if ($this->userEvenements->removeElement($userEvenement)) {
+            // set the owning side to null (unless already changed)
+            if ($userEvenement->getUser() === $this) {
+                $userEvenement->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Pari>
+     */
+    public function getParis(): Collection
+    {
+        return $this->paris;
+    }
+
+    public function addPari(Pari $pari): static
+    {
+        if (!$this->paris->contains($pari)) {
+            $this->paris->add($pari);
+            $pari->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePari(Pari $pari): static
+    {
+        if ($this->paris->removeElement($pari)) {
+            // set the owning side to null (unless already changed)
+            if ($pari->getUser() === $this) {
+                $pari->setUser(null);
+            }
+        }
 
         return $this;
     }

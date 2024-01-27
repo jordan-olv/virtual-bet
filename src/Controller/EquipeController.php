@@ -22,7 +22,7 @@ class EquipeController extends AbstractController
         $equipes = $equipeRepository->findAll();
         $jsonEquipe = $serializer->serialize($equipes, 'json', ['groups' => ['equipe_infos']]);
 
-        return new JsonResponse($jsonEquipe, Response::HTTP_OK);
+        return new JsonResponse($jsonEquipe, Response::HTTP_OK, [], true);
     }
 
     #[Route('/new', name: 'app_equipe_new', methods: ['GET', 'POST'])]
