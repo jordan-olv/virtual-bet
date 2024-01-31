@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\EvenementRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EvenementRepository::class)]
@@ -13,18 +14,24 @@ class Evenement
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["evenement_details"])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(["evenement_details"])]
     private ?string $libelle = null;
 
     #[ORM\OneToMany(mappedBy: 'Evenement', targetEntity: EquipeEvenement::class)]
+    #[Groups(["evenement_details"])]
     private Collection $equipeEvenements;
 
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: UserEvenement::class)]
+    #[Groups(["evenement_details"])]
+
     private Collection $userEvenements;
 
     #[ORM\OneToMany(mappedBy: 'evenement', targetEntity: Rencontre::class)]
+    #[Groups(["evenement_details"])]
     private Collection $rencontres;
 
     public function __construct()

@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EquipeEvenementRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: EquipeEvenementRepository::class)]
 class EquipeEvenement
@@ -11,10 +12,12 @@ class EquipeEvenement
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["equipe_infos"])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'equipeEvenements')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["equipe_infos"])]
     private ?Equipe $equipe = null;
 
     #[ORM\ManyToOne(inversedBy: 'equipeEvenements')]

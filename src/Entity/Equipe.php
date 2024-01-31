@@ -17,7 +17,7 @@ class Equipe
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(["equipe_infos"])]
+    #[Groups(["equipe_infos", "evenement_details", "pari_details"])]
     private ?string $libelle = null;
 
     #[ORM\OneToMany(mappedBy: 'equipe', targetEntity: EquipeEvenement::class)]

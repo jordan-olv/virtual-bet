@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\PariRepository;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PariRepository::class)]
@@ -11,18 +12,22 @@ class Pari
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["pari_details", "evenement_details"])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'paris')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["pari_details", "evenement_details", "user_details", 'pari_details_rencontre'])]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'paris')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["pari_details"])]
     private ?Rencontre $rencontre = null;
 
     #[ORM\ManyToOne(inversedBy: 'paris')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["pari_details", "evenement_details", 'pari_details_rencontre'])]
     private ?Equipe $EquipeChoix = null;
 
     public function getId(): ?int
