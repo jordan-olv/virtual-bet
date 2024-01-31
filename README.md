@@ -1,5 +1,6 @@
 Pour commencer le projet
 
+composer install\
 symfony console d:d:c\
 symfony console d:s:c\
 symfony console d:f:l
