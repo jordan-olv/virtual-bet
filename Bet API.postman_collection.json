@@ -1,0 +1,662 @@
+{
+	"info": {
+		"_postman_id": "d0adf965-53ad-459d-a16e-6e4117864f3e",
+		"name": "Bet API",
+		"description": "### L**ogin**\n\n{{base_url}}/login_check\n\n{ \"username\":\"admin@admin\", \"password\":\"admin\" }",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26618040"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "All Users",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/info?id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"info"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "User By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDY3MTc1OTQsImV4cCI6MTcwNjcyMTE5NCwicm9sZXMiOlsiQURNSU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhZG1pbkBhZG1pbiJ9.b3HoHB-BA7FYY9LYae-8kolrMGITperDDm4md5B8tJgqVT5mufPhNvv5b074qEroL221UezCqOE_HPY0CA5EWfarulqZ_hYT9mKwwDn3wd_Mmx4ijptA_BTgmygmwgwC7-nONMFZ5AhcTw4mVKgmZGmQ4XuDTbc_-TapmB2HOPOy-Kh-tX-NE2Dte_4ibNyKnmA4oTiNIxF7M-229cC3EJGN2Qkj9VWN1z22LH6RMm31T8u9pGqTk3KVEAIFvmGC0ZJDkhPeM-HqsFo8iW6PJ63hEgP9NpRK84cFzHjfe0QiDmKT1_N1f_KRahGnNm1wrljdkFhFTKn_hS48rZU5P_SIEbtR8xM4pezYc8fPbdoEmGR9DKOsrKsEQ2Q-4MRkcEenv57RhCuHf6TCEKE_v75kg32lowlMdMufgYdawagYYZfPMHv3XlKKMVhC0S94SEl_rtpOGrUlZnXXXev7ikJ1TRy-exRLM7sMgB8BNQu_YQtA-ix12gIdNsxCndU9oegEomh4hYpOb2cp5mfRuomP1DHBWTTnx3RFSLssT_r2FA2aox4FF-05DiN3E0c4Tei8UTzjOLmksNm1PmGHfed3p13Ox96bfTwWzXKjlv1Ft6dgYZz-lH80A4qq9yhRk8L0UKceitkNbJt0COgPkxz0dEJOXZs5T2vaMD019Mw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_user}}/3/",
+							"host": [
+								"{{base_url_user}}"
+							],
+							"path": [
+								"3",
+								""
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Edit User By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDY3MTgwMTksImV4cCI6MTcwNjcyMTYxOSwicm9sZXMiOlsiQURNSU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhZG1pbkBhZG1pbiJ9.cuKcHSZmZOz77LmKi4ZvqPjHwF45P3xcKRz3JkhODsWuQiP2Vv311N2sQbR1tmg9NbxXL_MwyrS_mJ-qN40tD7sNHbbrcFdCV3MEYR32qV-pKva_C41W2FWQwHEcck0RgeGjsBZIi7DXtyD28e2Y7AY8UcwRNLj-A2LdW1Xmpnu3-TEIgWzlx6C08Hpt_tm0L1H-mgZ9UIXAH66hhJskChTHH50O8nBlKq60jIf-QrH1gJUFQiiSMJWQqu0O3JoYMOk4LpzpSnKKXXAzvkEySFXXP9PHuyMpbi-tX9itl3u_igD7kx5mcaDRfVUyFItEvSjPGCxxwIaq3fsF61Z8S5mebiVkobmtjxC3dw38YyonXLfHSYsMxPLoVJRL7sGmTIIrD0D8lfsRdqy2dPZg9hq2QNNAtmoOUSgLZFyAnCzcwhmfmlexUtp2_lZ_-p4d4XBit-Z9DT-Kkhr4e6SAcArucyk_HN2q-Vwu3l-iw-Kw3XvqUtkYD2HWqrHKoL-6XMtS4TfXPM3udAEAztaFawbdiqSYWe23IoDwJ0lEVK3uBo_ocr1B0R_Blj24h_1L4VYiM1EzKEtyGeimh-sqpchEkYnT-s0me7OLeunBsuRbp4kzw_HH9TaWISa0VXdCgY1zolQkpCApMfVP0OIk1BqGurBDSYKNtkgaVFPLCi0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"test@est.Codmdd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_user}}/3/edit",
+							"host": [
+								"{{base_url_user}}"
+							],
+							"path": [
+								"3",
+								"edit"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Add Image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/info?id=1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"info"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1"
+								}
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Equipe",
+			"item": [
+				{
+					"name": "All Equipes",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_equipe}}/",
+							"host": [
+								"{{base_url_equipe}}"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Equipe By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDY3MzQwNzIsImV4cCI6MTcwNjczNzY3Miwicm9sZXMiOlsiQURNSU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhZG1pbkBhZG1pbiJ9.DvMP77OgTtihNfZuVAN1rXUDYdIJNZ_2ydPaiNpbup8_gOPZDspF6OPWP2PO83Vz1yItS8zc_pGejw8CdnwB6Akxf0kA1J6zmjiujSrcTQztEbzCVbZKljnUFnxupqaBJ-vmP3e27_UqBycpgbSWLg4nyOWcwzkz88rq7zoXBOzTjEORxQPxz4lilBtax_NTu8yhIC-cj7mIAuFw-2E490nyWapcRpgw8bySkROhgY4Yq_MpxPD-oTXSYn4Z_3JIBXMoXIBghtZXdI9fIabPg4dIwhIRFCGULR6-prlrK6WWZnIN9sbzXoqIA_EGdbRh1Ot738DKlt7L5-VT3lUg38B6BEuuqCPW5BXpMDi0VNygBBx-5EvbNAYPhjNJMFn3oFDQtFHZfu9qEB_WArgG5-BLz0-SezVmBhkx9aE-4b60i0AuTWGMoqFI_FDwFkdxfBPawc5kehP9AElMvzVUSKw3_9ozAw3D-HlVF9-87SZjaSCgHjkLe2tj9uOOtoOvDG9JsLP2k9WIekl_bftz2iQuppNXDxeYQdUuSPqTmgBPXzgcJU5T6s1P99bBvef2d5iE32luey_Sjev_JVZXstcC3sjAR5gkYK43ix4CkX966-5_crgkFLUqEmJn6Pvq8MyXRuRlOtu7xnJ4q13YjD5P-2-CXSfhgK9vvMPvPlc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_equipe}}/2",
+							"host": [
+								"{{base_url_equipe}}"
+							],
+							"path": [
+								"2"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Rencontre",
+			"item": [
+				{
+					"name": "All Rencontre",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_equipe}}/",
+							"host": [
+								"{{base_url_equipe}}"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Rencontre By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_equipe}}/",
+							"host": [
+								"{{base_url_equipe}}"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Evenement",
+			"item": [
+				{
+					"name": "All Evenement",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDY3MTgwMTksImV4cCI6MTcwNjcyMTYxOSwicm9sZXMiOlsiQURNSU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhZG1pbkBhZG1pbiJ9.cuKcHSZmZOz77LmKi4ZvqPjHwF45P3xcKRz3JkhODsWuQiP2Vv311N2sQbR1tmg9NbxXL_MwyrS_mJ-qN40tD7sNHbbrcFdCV3MEYR32qV-pKva_C41W2FWQwHEcck0RgeGjsBZIi7DXtyD28e2Y7AY8UcwRNLj-A2LdW1Xmpnu3-TEIgWzlx6C08Hpt_tm0L1H-mgZ9UIXAH66hhJskChTHH50O8nBlKq60jIf-QrH1gJUFQiiSMJWQqu0O3JoYMOk4LpzpSnKKXXAzvkEySFXXP9PHuyMpbi-tX9itl3u_igD7kx5mcaDRfVUyFItEvSjPGCxxwIaq3fsF61Z8S5mebiVkobmtjxC3dw38YyonXLfHSYsMxPLoVJRL7sGmTIIrD0D8lfsRdqy2dPZg9hq2QNNAtmoOUSgLZFyAnCzcwhmfmlexUtp2_lZ_-p4d4XBit-Z9DT-Kkhr4e6SAcArucyk_HN2q-Vwu3l-iw-Kw3XvqUtkYD2HWqrHKoL-6XMtS4TfXPM3udAEAztaFawbdiqSYWe23IoDwJ0lEVK3uBo_ocr1B0R_Blj24h_1L4VYiM1EzKEtyGeimh-sqpchEkYnT-s0me7OLeunBsuRbp4kzw_HH9TaWISa0VXdCgY1zolQkpCApMfVP0OIk1BqGurBDSYKNtkgaVFPLCi0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_evenement}}/",
+							"host": [
+								"{{base_url_evenement}}"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Evenement By Id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_equipe}}/",
+							"host": [
+								"{{base_url_equipe}}"
+							],
+							"path": [
+								""
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Add Equipe",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3MDY3Mjk1OTIsImV4cCI6MTcwNjczMzE5Miwicm9sZXMiOlsiQURNSU4iLCJST0xFX1VTRVIiXSwidXNlcm5hbWUiOiJhZG1pbkBhZG1pbiJ9.rpf2ChU9zlxiYoHfT1annxy1q9a_PLKDW190GjKJ8MYmBNzQHXbCaepHZ0Lney2XCDyk55qQ1KMFouL5l0rDffgWXml2owsmN6k_veyvTZ2suRhp2o0lnVsNQmYRouKB0yJ7f2qcgGYWl6R5d8BmjhQoOdcwAOlJYzGUK7w_t7c_o3jKt4akRJPHEbR9iyJyR0UQ8mRWbu5Jqngbd7vPXERoBqk2egGzZnrCXx21zAYV2m5VpE9rHn3nFhXeTp4Jkx8Z1GLnINa_gjDyTtiA0Y3_bRLZEYFdrYI-5PXJIT-XnYUZeVXajHv0zm2tPq9thdOeDW5Xy1H1Y-3DiSB4uPD553F4j1zErW33VEqHJC_BwAoTtQ-mwk089-8ay4E_CHz9UxrvqE6Vf-pIliFgjzeWAg0-qjg7t1F1O7AKBYTZzjqcEHC7sqvLuxNRiu9jYjxtAgkODfwSjO57QZ9XOKecuj8jdF3uVqNXJKm5Y8UDi44pkq2c_hATmjXUkbC1a_DbA3tTW9On4Mc9yE_3Sbo1yxRhROz5Wgj88t-Yz7qIpitsjJtr8FSSatQxcRGoxqidU_VTxhxcCir1asNZrBhAswk-IkJm-oVVim7pbqbtQPdPcDvc3ndsX1qqHEjY0tR4A78rK3wVfMsVFZ_jTWWUEatpos8JCLqkcsl-meg",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"evenement_id\":3,\r\n    \"equipe_id\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url_evenement}}/add_equipe",
+							"host": [
+								"{{base_url_evenement}}"
+							],
+							"path": [
+								"add_equipe"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Pari",
+			"item": [
+				{
+					"name": "All Pari",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "b9b5e23fd003d24dcc091b8ff82f7c1b6a702005765c315cc016173cb016cc96e6a9e4d1229ca9449d7abe68cb5a4d20172d98a52b11ab2b24631e9c94b8bf77",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_pari}}/new",
+							"host": [
+								"{{base_url_pari}}"
+							],
+							"path": [
+								"new"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Pari",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "b9b5e23fd003d24dcc091b8ff82f7c1b6a702005765c315cc016173cb016cc96e6a9e4d1229ca9449d7abe68cb5a4d20172d98a52b11ab2b24631e9c94b8bf77",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_pari}}/new",
+							"host": [
+								"{{base_url_pari}}"
+							],
+							"path": [
+								"new"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				}
+			],
+			"description": "Create \\[/new\\]\n\n{ \"equipeChoix\": 17,    \"rencontre\": 2}"
+		},
+		{
+			"name": "Image",
+			"item": [
+				{
+					"name": "Create Image",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "b9b5e23fd003d24dcc091b8ff82f7c1b6a702005765c315cc016173cb016cc96e6a9e4d1229ca9449d7abe68cb5a4d20172d98a52b11ab2b24631e9c94b8bf77",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base_url_pari}}/new",
+							"host": [
+								"{{base_url_pari}}"
+							],
+							"path": [
+								"new"
+							]
+						},
+						"description": "This is a GET request and it is used to \"get\" data from an endpoint. There is no request body for a GET request, but you can use query parameters to help specify the resource you want data on (e.g., in this request, we have `id=1`).\n\nA successful GET response will have a `200 OK` status, and should include some kind of response body - for example, HTML web content or JSON data."
+					},
+					"response": []
+				}
+			],
+			"description": "Create \\[/new\\]\n\n{ \"equipeChoix\": 17,    \"rencontre\": 2}"
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000/api"
+		},
+		{
+			"key": "base_url_user",
+			"value": "http://localhost:8000/api/user",
+			"type": "string"
+		},
+		{
+			"key": "base_url_equipe",
+			"value": "http://localhost:8000/api/equipe",
+			"type": "string"
+		},
+		{
+			"key": "base_url_pari",
+			"value": "http://localhost:8000/api/pari",
+			"type": "string"
+		},
+		{
+			"key": "base_url_image",
+			"value": "http://localhost:8000/api/image",
+			"type": "string"
+		},
+		{
+			"key": "base_url_evenement",
+			"value": "http://localhost:8000/api/evenement",
+			"type": "string"
+		},
+		{
+			"key": "base_url_rencontre",
+			"value": "http://localhost:8000/api/rencontre",
+			"type": "string"
+		}
+	]
+}
