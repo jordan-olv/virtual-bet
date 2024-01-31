@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use App\Repository\UserEvenementRepository;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserEvenementRepository::class)]
@@ -12,10 +14,12 @@ class UserEvenement
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["evenement_details"])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'userEvenements')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["evenement_details"])]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'userEvenements')]
@@ -25,9 +29,17 @@ class UserEvenement
     #[ORM\Column(type: Types::BIGINT)]
     private ?string $points = null;
 
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
+
     private function __construct()
     {
         $this->points = 0;
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -67,6 +79,30 @@ class UserEvenement
     public function setPoints(string $points): static
     {
         $this->points = $points;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }

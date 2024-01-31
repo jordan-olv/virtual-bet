@@ -14,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
+#[Route('/api/image')]
 class DownloadedFilesController extends AbstractController
 {
     #[Route('/', name: 'app.index')]
@@ -21,7 +22,7 @@ class DownloadedFilesController extends AbstractController
     {
     }
 
-    #[Route('/api/file', name: 'files.create', methods: ["POST"])]
+    #[Route('/new', name: 'files.create', methods: ["POST"])]
     public function createFile(
         Request $request,
         DownloadedFilesRepository $repository,

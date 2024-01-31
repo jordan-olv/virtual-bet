@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -32,11 +33,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: true)]
-    #[Groups(["user_details"])]
-    private ?DownloadedFiles $image = null;
-
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     #[Groups(["user_stats"])]
     private ?UserStats $userStats = null;
@@ -47,12 +43,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Pari::class)]
     private Collection $paris;
 
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?DownloadedFiles $image = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
+
     public function __construct()
     {
         $this->userStats = new UserStats();
         $this->userStats->setUser($this);
         $this->userEvenements = new ArrayCollection();
         $this->paris = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable();
+        $this->updatedAt = new DateTimeImmutable();
     }
 
     public function getId(): ?int
@@ -107,18 +114,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
-    }
-
-    public function getImage(): ?DownloadedFiles
-    {
-        return $this->image;
-    }
-
-    public function setImage(?DownloadedFiles $image): self
-    {
-        $this->image = $image;
-
-        return $this;
     }
 
     public function getUserStats(): ?UserStats
@@ -194,6 +189,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $pari->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?DownloadedFiles
+    {
+        return $this->image;
+    }
+
+    public function setImage(?DownloadedFiles $image): self
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
