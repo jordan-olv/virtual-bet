@@ -32,11 +32,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: true)]
-    #[Groups(["user_details"])]
-    private ?DownloadedFiles $image = null;
-
     #[ORM\OneToOne(mappedBy: 'user', cascade: ['persist', 'remove'])]
     #[Groups(["user_stats"])]
     private ?UserStats $userStats = null;
@@ -46,6 +41,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Pari::class)]
     private Collection $paris;
+
+    #[ORM\OneToOne(inversedBy: 'user', cascade: ['persist', 'remove'])]
+    private ?DownloadedFiles $image = null;
 
     public function __construct()
     {
@@ -107,18 +105,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         // If you store any temporary, sensitive data on the user, clear it here
-    }
-
-    public function getImage(): ?DownloadedFiles
-    {
-        return $this->image;
-    }
-
-    public function setImage(?DownloadedFiles $image): self
-    {
-        $this->image = $image;
-
-        return $this;
     }
 
     public function getUserStats(): ?UserStats
@@ -194,6 +180,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $pari->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?DownloadedFiles
+    {
+        return $this->image;
+    }
+
+    public function setImage(?DownloadedFiles $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

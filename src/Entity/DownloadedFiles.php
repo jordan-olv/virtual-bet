@@ -42,6 +42,7 @@ class DownloadedFiles
     #[ORM\OneToOne(mappedBy: 'image', cascade: ['persist', 'remove'])]
     private ?User $user = null;
 
+
     public function __construct()
     {
         $this->setStatus(true);
@@ -167,10 +168,15 @@ class DownloadedFiles
         return $this->user;
     }
 
-    public function setUser(User $user): static
+    public function setUser(?User $user): static
     {
+        // unset the owning side of the relation if necessary
+        if ($user === null && $this->user !== null) {
+            $this->user->setImage(null);
+        }
+
         // set the owning side of the relation if necessary
-        if ($user->getImage() !== $this) {
+        if ($user !== null && $user->getImage() !== $this) {
             $user->setImage($this);
         }
 
