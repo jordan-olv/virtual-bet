@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\UserEvenementRepository;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: UserEvenementRepository::class)]
@@ -13,10 +14,12 @@ class UserEvenement
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["evenement_details"])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'userEvenements')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["evenement_details"])]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'userEvenements')]

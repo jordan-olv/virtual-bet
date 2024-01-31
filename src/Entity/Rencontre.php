@@ -7,6 +7,7 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: RencontreRepository::class)]
 class Rencontre
@@ -14,6 +15,7 @@ class Rencontre
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups(["evenement_details"])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'rencontres')]
@@ -21,23 +23,28 @@ class Rencontre
     private ?Evenement $evenement = null;
 
     #[ORM\Column(length: 30)]
+    #[Groups(["evenement_details", "rencontre_infos"])]
     private ?string $state = null;
 
 
 
 
     #[ORM\OneToMany(mappedBy: 'rencontre', targetEntity: Pari::class)]
+    #[Groups(["evenement_details", "rencontre_infos"])]
     private Collection $paris;
 
     #[ORM\ManyToOne(inversedBy: 'victoire')]
+    #[Groups(["evenement_details", "rencontre_infos"])]
     private ?Equipe $resultat = null;
 
     #[ORM\ManyToOne(inversedBy: 'EquipeA')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["evenement_details", "rencontre_infos"])]
     private ?Equipe $EquipeA = null;
 
     #[ORM\ManyToOne(inversedBy: 'EquipeB')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(["evenement_details", "rencontre_infos"])]
     private ?Equipe $EquipeB = null;
 
     #[ORM\Column]
